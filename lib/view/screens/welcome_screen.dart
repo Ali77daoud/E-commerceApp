@@ -47,6 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                           color: Colors.white, 
                           fontsize: 35, 
                           fontWeight: FontWeight.bold,
+                          textAlign: TextAlign.start,
                           textdecoration: TextDecoration.none
                           ),
                       ),
@@ -67,14 +68,16 @@ class WelcomeScreen extends StatelessWidget {
                             color: mainColor, 
                             fontsize: 40, 
                             fontWeight: FontWeight.bold,
-                            textdecoration: TextDecoration.none
+                            textdecoration: TextDecoration.none,
+                            textAlign: TextAlign.start
                             ),
                            textUtils(
                             text: 'Shop', 
                             color: Colors.white, 
                             fontsize: 40, 
                             fontWeight: FontWeight.bold,
-                            textdecoration: TextDecoration.none
+                            textdecoration: TextDecoration.none,
+                            textAlign: TextAlign.start
                             ),
                         ],
                       ),
@@ -87,11 +90,12 @@ class WelcomeScreen extends StatelessWidget {
                        Get.offNamed(Routes.loginScreen);
                      }, 
                      childtext: textUtils(
-                       text: 'Get Start', 
+                       text: 'Get Started', 
                        color: Colors.white, 
                        fontsize: 25, 
                        fontWeight: FontWeight.bold,
-                       textdecoration: TextDecoration.none
+                       textdecoration: TextDecoration.none,
+                       textAlign: TextAlign.start
                        ),
                      maincolor: mainColor, 
                      radius: 10, 
@@ -111,7 +115,8 @@ class WelcomeScreen extends StatelessWidget {
                           color: Colors.white, 
                           fontsize: 15, 
                           fontWeight: FontWeight.normal,
-                          textdecoration: TextDecoration.none
+                          textdecoration: TextDecoration.none,
+                          textAlign: TextAlign.start
                           ),
                           TextButton(
                             onPressed:(){
@@ -122,7 +127,8 @@ class WelcomeScreen extends StatelessWidget {
                               color: mainColor, 
                               fontsize: 15, 
                               fontWeight: FontWeight.normal,
-                              textdecoration: TextDecoration.underline
+                              textdecoration: TextDecoration.underline,
+                              textAlign: TextAlign.start
                               ),
                            ),
                       ],

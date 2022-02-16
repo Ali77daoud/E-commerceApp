@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/logic/controllers/auth_controller.dart';
 import 'package:e_commerce_app/routes/routes.dart';
 import 'package:e_commerce_app/utils/my_string.dart';
 import 'package:e_commerce_app/utils/theme.dart';
@@ -11,10 +12,12 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({ Key? key }) : super(key: key);
 
   final formKey = GlobalKey<FormState>();
-  TextEditingController emailkey = TextEditingController();
-  TextEditingController passwordkey = TextEditingController();
+  final TextEditingController emailkey = TextEditingController();
+  final TextEditingController passwordkey = TextEditingController();
+  final authcontroller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Get.isDarkMode?Colors.white:darkGreyClr,
       body:SafeArea(
@@ -34,6 +37,7 @@ class LoginScreen extends StatelessWidget {
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
+                        textAlign: TextAlign.start
                         ),
                         textUtils(
                         text: 'IN', 
@@ -41,11 +45,12 @@ class LoginScreen extends StatelessWidget {
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
+                        textAlign: TextAlign.start
                         ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 90,),
+                SizedBox(height: h*0.1,),
                 //insert email
                 Padding(
                   padding: const EdgeInsets.only(left: 20,right: 20),
@@ -66,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                     maxlines: 1,
                     ifobscure: false,
                     prifixicon: Icon(Icons.email,color: Get.isDarkMode?mainColor:pinkClr,), 
-                    sufixicon: Container(),
+                    sufixicon: Container(width: 0,),
                     ontab: (){}, 
                     cursorColor: Get.isDarkMode?mainColor:pinkClr,
                     backgrouncolor: Colors.grey.shade300,
@@ -77,34 +82,45 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30,),
                 //insert password
-                Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20),
-                  child: defualTextFormFeild(
-                    controller: passwordkey, 
-                    inputtype: TextInputType.visiblePassword, 
-                    validate: (value){
-                      if(value.isEmpty){
-                        return 'plz insert the password';
-                      }
-                      else if(value.length < 8){
-                        return 'plz insert valid password with 8 char';
-                      }
-                    }, 
-                    label: 'Password',
-                    labelcolor: Get.isDarkMode?mainColor:pinkClr,
-                    inputtextcolor: Colors.black,
-                    maxlines: 1,
-                    ifobscure: true,
-                    prifixicon: Icon(Icons.lock,color: Get.isDarkMode?mainColor:pinkClr,), 
-                    sufixicon: Container(),
-                    ontab: (){}, 
-                    cursorColor: Get.isDarkMode?mainColor:pinkClr,
-                    backgrouncolor: Colors.grey.shade300,
-                    borderraduis: 15,
-                    bordercolor: Colors.grey.shade300,
-                    focusbordercolor: Get.isDarkMode?mainColor:pinkClr,
-                    ),
-                ),
+                GetBuilder<AuthController>(
+                  builder: (_){
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 20,right: 20),
+                      child: defualTextFormFeild(
+                        controller: passwordkey, 
+                        inputtype: TextInputType.visiblePassword, 
+                        validate: (value){
+                          if(value.isEmpty){
+                            return 'plz insert the password';
+                          }
+                          else if(value.length < 8){
+                            return 'plz insert valid password with 8 char';
+                          }
+                        }, 
+                        label: 'Password',
+                        labelcolor: Get.isDarkMode?mainColor:pinkClr,
+                        inputtextcolor: Colors.black,
+                        maxlines: 1,
+                        ifobscure: authcontroller.isvisibilty,
+                        prifixicon: Icon(Icons.lock,color: Get.isDarkMode?mainColor:pinkClr,), 
+                        sufixicon: IconButton(
+                            onPressed: (){
+                              authcontroller.visibilty();
+                            },
+                            icon: authcontroller.isvisibilty?
+                             Icon(Icons.visibility_off, color: Colors.grey.shade700):
+                             Icon(Icons.visibility, color: Colors.grey.shade700)
+                            ),
+                        ontab: (){}, 
+                        cursorColor: Get.isDarkMode?mainColor:pinkClr,
+                        backgrouncolor: Colors.grey.shade300,
+                        borderraduis: 15,
+                        bordercolor: Colors.grey.shade300,
+                        focusbordercolor: Get.isDarkMode?mainColor:pinkClr,
+                        ),
+                    );
+                  }
+                  ),
                 
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
@@ -114,7 +130,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: (){
-          
+                          Get.toNamed(Routes.forgotpassScreen);
                         },
                         child: textUtils(
                               text: 'Forgot Password ?', 
@@ -122,42 +138,69 @@ class LoginScreen extends StatelessWidget {
                               fontsize: 15,
                               fontWeight: FontWeight.bold, 
                               textdecoration: TextDecoration.none,
+                              textAlign: TextAlign.start
                             ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 40,),
+                SizedBox(height: h*0.06,),
                 //login buttom
-                buttomUtils(
-                       ontab: (){
-                         if(formKey.currentState!.validate()){
-                           print('ali');
-                         }
-                       }, 
-                       childtext: textUtils(
-                         text: 'LOG IN', 
-                         color: Colors.white, 
-                         fontsize: 20, 
-                         fontWeight: FontWeight.bold,
-                         textdecoration: TextDecoration.none
-                         ),
-                       maincolor: Get.isDarkMode?mainColor:pinkClr, 
-                       radius: 10, 
-                       leftpadding: 120, 
-                       rightpadding: 120, 
-                       toppadding: 15, 
-                       buttompadding: 15,
-                    ),
-                const SizedBox(height: 20,),
+                GetBuilder<AuthController>(
+                  builder: (_){
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 20,right: 20),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: buttomUtils(
+                              ontab: (){
+                                if(formKey.currentState!.validate()){
+                                  authcontroller.showCircleIndecator();
+                                  authcontroller.logInUsingFirebase(
+                                    email: emailkey.text, 
+                                    password: passwordkey.text,
+                                    );
+                                }
+                              }, 
+                              childtext: textUtils(
+                                text: 'LOG IN', 
+                                color: Colors.white, 
+                                fontsize: 20, 
+                                fontWeight: FontWeight.bold,
+                                textdecoration: TextDecoration.none,
+                                textAlign: TextAlign.start
+                                ),
+                              maincolor: Get.isDarkMode?mainColor:pinkClr, 
+                              radius: 10, 
+                              leftpadding: 0, 
+                              rightpadding: 0, 
+                              toppadding: 15, 
+                              buttompadding: 15,
+                            ),
+                      ),
+                    );
+                  }
+                  ),
+                SizedBox(height: h*0.02,),
+                GetBuilder<AuthController>(
+                  builder: (_){
+                    return authcontroller.ifCircleIndicatorShown?
+                    CircularProgressIndicator(color:Get.isDarkMode?mainColor:pinkClr,):
+                    Container();
+                    
+                  }
+                  ),
+               
+               SizedBox(height: h*0.02,),
                 textUtils(
                     text: 'OR', 
                     color: Colors.grey.shade600, 
                     fontsize: 20,
                     fontWeight: FontWeight.bold, 
                     textdecoration: TextDecoration.none,
+                    textAlign: TextAlign.start
                     ),
-                const SizedBox(height: 30,),
+                SizedBox(height: h*0.03,),
                 //login with 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -169,22 +212,28 @@ class LoginScreen extends StatelessWidget {
                       child: Image.asset('assets/images/facebook.png')
                       ),
                     const SizedBox(width: 20,),
-                    InkWell(
-                      onTap: (){
-                        
-                      },
-                      child: Image.asset('assets/images/google.png'),
+                    GetBuilder<AuthController>(
+                      builder: (_){
+                        return InkWell(
+                          onTap: (){
+                           authcontroller.showCircleIndecator();
+                            authcontroller.googleSignIn();
+                          },
+                          child: Image.asset('assets/images/google.png'),
+                          );
+                      }
                       ),
+                    
                   ],
                 ),
-                const SizedBox(height: 50,),
+                SizedBox(height: h*0.1,),
                 //dont have an account
                 Container(
                   width: double.infinity,
                   height: 115,
                   decoration: BoxDecoration(
                     color: Get.isDarkMode?mainColor:pinkClr,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
                   ),
                   child: Row(
                     mainAxisAlignment:  MainAxisAlignment.center,
@@ -195,6 +244,7 @@ class LoginScreen extends StatelessWidget {
                         fontsize: 15,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
+                        textAlign: TextAlign.start
                         ),
                         TextButton(
                           onPressed: (){
@@ -206,6 +256,7 @@ class LoginScreen extends StatelessWidget {
                               fontsize: 15,
                               fontWeight: FontWeight.bold, 
                               textdecoration: TextDecoration.underline,
+                              textAlign: TextAlign.start
                               ),
                               ),
                     ],

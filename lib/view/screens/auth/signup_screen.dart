@@ -15,9 +15,10 @@ class SignupScreen extends StatelessWidget {
   final TextEditingController userkey = TextEditingController();
   final TextEditingController emailkey = TextEditingController();
   final TextEditingController passwordkey = TextEditingController();
-  final controller = Get.find<AuthController>();
+  final authcontroller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Get.isDarkMode?Colors.white:darkGreyClr,
       body: SafeArea(
@@ -37,6 +38,7 @@ class SignupScreen extends StatelessWidget {
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
+                        textAlign: TextAlign.start
                         ),
                         textUtils(
                         text: 'UP', 
@@ -44,11 +46,12 @@ class SignupScreen extends StatelessWidget {
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
+                        textAlign: TextAlign.start
                         ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 80,),
+                SizedBox(height: h*0.12,),
                 //insert username 
                 Padding(
                   padding: const EdgeInsets.only(left: 20,right: 20),
@@ -69,7 +72,7 @@ class SignupScreen extends StatelessWidget {
                     maxlines: 1,
                     ifobscure: false,
                     prifixicon: Icon(Icons.person,color: Get.isDarkMode?mainColor:pinkClr,size: 30,), 
-                    sufixicon: Container(),
+                    sufixicon: Container(width: 0,),
                     ontab: (){}, 
                     cursorColor: Get.isDarkMode?mainColor:pinkClr,
                     backgrouncolor: Colors.grey.shade300,
@@ -99,7 +102,7 @@ class SignupScreen extends StatelessWidget {
                     maxlines: 1,
                     ifobscure: false,
                     prifixicon: Icon(Icons.email,color: Get.isDarkMode?mainColor:pinkClr,size: 30,), 
-                    sufixicon: Container(),
+                    sufixicon: Container(width: 0,),
                     ontab: (){}, 
                     cursorColor: Get.isDarkMode?mainColor:pinkClr,
                     backgrouncolor: Colors.grey.shade300,
@@ -129,13 +132,13 @@ class SignupScreen extends StatelessWidget {
                           labelcolor: Get.isDarkMode?mainColor:pinkClr,
                           inputtextcolor: Colors.black,
                           maxlines: 1,
-                          ifobscure: controller.isvisibilty,
+                          ifobscure: authcontroller.isvisibilty,
                           prifixicon: Icon(Icons.lock,color: Get.isDarkMode?mainColor:pinkClr,), 
                           sufixicon: IconButton(
                             onPressed: (){
-                              controller.visibilty();
+                              authcontroller.visibilty();
                             },
-                            icon: controller.isvisibilty?
+                            icon: authcontroller.isvisibilty?
                              Icon(Icons.visibility_off, color: Colors.grey.shade700):
                              Icon(Icons.visibility, color: Colors.grey.shade700)
                             ),
@@ -149,67 +152,104 @@ class SignupScreen extends StatelessWidget {
                       );
                   }
                   ),
-                const SizedBox(height: 30,),
+                SizedBox(height: h*0.05,),
                  //check box
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: (){
-          
-                        },
-                        child: 
-                          Get.isDarkMode?Image.asset('assets/images/check.png'):
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(100),
+                GetBuilder<AuthController>(
+                  builder:(_){
+                  return  Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            onTap: (){
+                              authcontroller.checked();
+                            },
+                            child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: authcontroller.ischecked?
+                              Get.isDarkMode?
+                               Image.asset('assets/images/check.png'):
+                               const Icon(Icons.done,color: pinkClr,):
+                               Container(),
+                              ),
                             ),
-                            child: const Icon(Icons.check_circle_outline,color: pinkClr,)
+                          const SizedBox(width: 20,),
+                          textUtils(
+                            text: 'I accept terms & conditions', 
+                            color: Get.isDarkMode?Colors.black:Colors.white, 
+                            fontsize: 15,
+                            fontWeight: FontWeight.bold, 
+                            textdecoration: TextDecoration.none,
+                            textAlign: TextAlign.start
                             ),
-                        ),
-                      const SizedBox(width: 20,),
-                      textUtils(
-                        text: 'I accept terms & conditions', 
-                        color: Get.isDarkMode?Colors.black:Colors.white, 
-                        fontsize: 15,
-                        fontWeight: FontWeight.bold, 
-                        textdecoration: TextDecoration.none,
-                        ),
-                    ],
+                        ],
+                      ),
+                    );
+                  }
                   ),
-                ),
-                const SizedBox(height: 50,),
+                SizedBox(height: h*0.05,),
                 //sign up buttom
-                buttomUtils(
-                       ontab: (){
-                         if(formKey.currentState!.validate()){
-                           print('ali');
-                         }
-                       }, 
-                       childtext: textUtils(
-                         text: 'SIGN UP', 
-                         color: Colors.white, 
-                         fontsize: 20, 
-                         fontWeight: FontWeight.bold,
-                         textdecoration: TextDecoration.none
-                         ),
-                       maincolor: Get.isDarkMode?mainColor:pinkClr, 
-                       radius: 10, 
-                       leftpadding: 120, 
-                       rightpadding: 120, 
-                       toppadding: 15, 
-                       buttompadding: 15,
-                    ),
-                const SizedBox(height: 80,),
+                GetBuilder<AuthController>(
+                  builder: (_){
+                    return Padding(
+                  padding: const EdgeInsets.only(left: 20,right: 20),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: buttomUtils(
+                           ontab: ()async{
+                             if(formKey.currentState!.validate()){
+                               if(authcontroller.ischecked==true){
+                                 authcontroller.signUpUsingFirebase(
+                                 name: userkey.text.toString(), 
+                                 email: emailkey.text, 
+                                 password: passwordkey.text,
+                                 );
+                                 
+                               }
+                               else{
+                                Get.snackbar(
+                                  'Check Box', 
+                                  'please, accept terms & condition',
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  backgroundColor: Colors.green,
+                                  colorText: Colors.white,
+                                  );
+                            }
+                             }
+                            
+                            }, 
+                           childtext: textUtils(
+                             text: 'SIGN UP', 
+                             color: Colors.white, 
+                             fontsize: 20, 
+                             fontWeight: FontWeight.bold,
+                             textdecoration: TextDecoration.none,
+                             textAlign: TextAlign.start
+                             ),
+                           maincolor: Get.isDarkMode?mainColor:pinkClr, 
+                           radius: 10, 
+                           leftpadding: 0, 
+                           rightpadding: 0, 
+                           toppadding: 15, 
+                           buttompadding: 15,
+                        ),
+                  ),
+                );
+                  }
+                  ),
+                SizedBox(height:h*0.15,),
                 Container(
                   width: double.infinity,
                   height: 115,
                   decoration:  BoxDecoration(
                     color: Get.isDarkMode?mainColor:pinkClr,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
                   ),
                   child: Row(
                     mainAxisAlignment:  MainAxisAlignment.center,
@@ -220,6 +260,7 @@ class SignupScreen extends StatelessWidget {
                         fontsize: 15,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
+                        textAlign: TextAlign.start
                         ),
                         TextButton(
                           onPressed: (){
@@ -231,6 +272,7 @@ class SignupScreen extends StatelessWidget {
                               fontsize: 15,
                               fontWeight: FontWeight.bold, 
                               textdecoration: TextDecoration.underline,
+                              textAlign: TextAlign.start
                               ),
                               ),
                     ],

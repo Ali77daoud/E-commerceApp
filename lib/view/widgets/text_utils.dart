@@ -6,6 +6,7 @@ Widget textUtils({
   required double fontsize,
   required FontWeight fontWeight,
   required TextDecoration textdecoration,
+  required TextAlign textAlign,
   }){
   return Text(
     text,
@@ -16,5 +17,6 @@ Widget textUtils({
       fontSize: fontsize,
       fontWeight: fontWeight, 
     ),
+    textAlign: textAlign,
     );
 }
