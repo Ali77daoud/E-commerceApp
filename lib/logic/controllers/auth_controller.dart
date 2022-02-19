@@ -2,6 +2,7 @@ import 'package:e_commerce_app/routes/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController{
@@ -10,6 +11,9 @@ class AuthController extends GetxController{
   bool ifCircleIndicatorShown=false;
   var displyName = '';
   var displyUserPhoto = '';
+  var isSigenedIn = false;
+
+  final GetStorage authbox = GetStorage();
 
   void visibilty(){
     isvisibilty =!isvisibilty;
@@ -74,7 +78,7 @@ class AuthController extends GetxController{
     }
   }
 
-  Future<void> logInUsingFirebase(
+  void logInUsingFirebase(
     {
       required String email,
       required String password,
@@ -86,12 +90,15 @@ class AuthController extends GetxController{
         password: password
         ).then((value){
          displyName=FirebaseAuth.instance.currentUser!.displayName!;
-         ifCircleIndicatorShown=false;
         }
          );
+        ifCircleIndicatorShown=false;
+        isSigenedIn = true;
+        authbox.write("auth",isSigenedIn);
         update();
         Get.offNamed(Routes.mainScreen);
     }on FirebaseAuthException catch (e){
+      ifCircleIndicatorShown=false;
       String title = e.code.replaceAll(RegExp('-'), ' ');
       String message = '';
       if(e.code == 'user-not-found'){
@@ -112,6 +119,7 @@ class AuthController extends GetxController{
         colorText: Colors.white,
         );
       } catch (e) {
+        ifCircleIndicatorShown=false;
         Get.snackbar(
           'Error', 
           e.toString(),
@@ -129,17 +137,29 @@ class AuthController extends GetxController{
       displyName=googleUser.displayName!;
       displyUserPhoto=googleUser.displayName!;
       ifCircleIndicatorShown=false;
+      isSigenedIn = true;
+      authbox.write("auth",isSigenedIn);
       update();
       Get.offNamed(Routes.mainScreen);
-    }catch(e){
-    Get.snackbar(
+    }on FirebaseAuthException catch (e){
+      Get.snackbar(
             'Error', 
             e.toString(),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green,
             colorText: Colors.white,
             );
-    }
+    }catch(e){
+      ifCircleIndicatorShown=false;
+      update();
+      Get.snackbar(
+              'Error', 
+              e.toString(),
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.green,
+              colorText: Colors.white,
+              );
+      }
     
   }
 
@@ -181,8 +201,27 @@ class AuthController extends GetxController{
     }
   }
 
-  void signOutFromApp(){}
+  void signOutFromApp()async{
+    try {
+      await FirebaseAuth.instance.signOut();
+      await GoogleSignIn().signOut();
+      displyName= '';
+      displyName= '';
+      ifCircleIndicatorShown=false;
+      authbox.remove('auth');
+      update();
+      Get.offNamed(Routes.welcomeScreen);
+    } catch (e) {
+      Get.snackbar(
+            'Error', 
+            e.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+            );
+    }
+  }
 
-
+  
 
 }

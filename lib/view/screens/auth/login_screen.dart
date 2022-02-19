@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/logic/controllers/auth_controller.dart';
+import 'package:e_commerce_app/logic/controllers/theme_controller.dart';
 import 'package:e_commerce_app/routes/routes.dart';
 import 'package:e_commerce_app/utils/my_string.dart';
 import 'package:e_commerce_app/utils/theme.dart';
@@ -19,7 +20,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Get.isDarkMode?Colors.white:darkGreyClr,
+      backgroundColor: Get.isDarkMode?darkGreyClr:Colors.white,
       body:SafeArea(
         child: Form(
           key: formKey,
@@ -33,7 +34,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       textUtils(
                         text: 'LOG ', 
-                        color: Get.isDarkMode?mainColor:pinkClr, 
+                        color: Get.isDarkMode?pinkClr:mainColor,
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
@@ -41,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         textUtils(
                         text: 'IN', 
-                        color: Get.isDarkMode?Colors.black:Colors.white, 
+                        color: Get.isDarkMode?Colors.white:Colors.black, 
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
@@ -66,18 +67,18 @@ class LoginScreen extends StatelessWidget {
                       }
                     }, 
                     label: 'Email',
-                    labelcolor: Get.isDarkMode?mainColor:pinkClr,
+                    labelcolor: Get.isDarkMode?pinkClr:mainColor,
                     inputtextcolor: Colors.black,
                     maxlines: 1,
                     ifobscure: false,
-                    prifixicon: Icon(Icons.email,color: Get.isDarkMode?mainColor:pinkClr,), 
+                    prifixicon: Icon(Icons.email,color: Get.isDarkMode?pinkClr:mainColor,), 
                     sufixicon: Container(width: 0,),
                     ontab: (){}, 
                     cursorColor: Get.isDarkMode?mainColor:pinkClr,
                     backgrouncolor: Colors.grey.shade300,
                     borderraduis: 15,
                     bordercolor: Colors.grey.shade300,
-                    focusbordercolor: Get.isDarkMode?mainColor:pinkClr,
+                    focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
                     ),
                 ),
                 const SizedBox(height: 30,),
@@ -98,11 +99,11 @@ class LoginScreen extends StatelessWidget {
                           }
                         }, 
                         label: 'Password',
-                        labelcolor: Get.isDarkMode?mainColor:pinkClr,
+                        labelcolor: Get.isDarkMode?pinkClr:mainColor,
                         inputtextcolor: Colors.black,
                         maxlines: 1,
                         ifobscure: authcontroller.isvisibilty,
-                        prifixicon: Icon(Icons.lock,color: Get.isDarkMode?mainColor:pinkClr,), 
+                        prifixicon: Icon(Icons.lock,color: Get.isDarkMode?pinkClr:mainColor,), 
                         sufixicon: IconButton(
                             onPressed: (){
                               authcontroller.visibilty();
@@ -112,11 +113,11 @@ class LoginScreen extends StatelessWidget {
                              Icon(Icons.visibility, color: Colors.grey.shade700)
                             ),
                         ontab: (){}, 
-                        cursorColor: Get.isDarkMode?mainColor:pinkClr,
+                        cursorColor: Get.isDarkMode?pinkClr:mainColor,
                         backgrouncolor: Colors.grey.shade300,
                         borderraduis: 15,
                         bordercolor: Colors.grey.shade300,
-                        focusbordercolor: Get.isDarkMode?mainColor:pinkClr,
+                        focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
                         ),
                     );
                   }
@@ -170,7 +171,7 @@ class LoginScreen extends StatelessWidget {
                                 textdecoration: TextDecoration.none,
                                 textAlign: TextAlign.start
                                 ),
-                              maincolor: Get.isDarkMode?mainColor:pinkClr, 
+                              maincolor: Get.isDarkMode?pinkClr:mainColor,
                               radius: 10, 
                               leftpadding: 0, 
                               rightpadding: 0, 
@@ -185,7 +186,7 @@ class LoginScreen extends StatelessWidget {
                 GetBuilder<AuthController>(
                   builder: (_){
                     return authcontroller.ifCircleIndicatorShown?
-                    CircularProgressIndicator(color:Get.isDarkMode?mainColor:pinkClr,):
+                    CircularProgressIndicator(color:Get.isDarkMode?pinkClr:mainColor,):
                     Container();
                     
                   }
@@ -207,7 +208,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: (){
-          
+                        
                       },
                       child: Image.asset('assets/images/facebook.png')
                       ),
@@ -232,7 +233,7 @@ class LoginScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 115,
                   decoration: BoxDecoration(
-                    color: Get.isDarkMode?mainColor:pinkClr,
+                    color: Get.isDarkMode?pinkClr:mainColor,
                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
                   ),
                   child: Row(

@@ -18,19 +18,19 @@ class ForgotPassScreen extends StatelessWidget {
     double h = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Get.isDarkMode?Colors.white:darkGreyClr,
+        backgroundColor: Get.isDarkMode?darkGreyClr:Colors.white,
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode?Colors.white:darkGreyClr ,
-          title: Center(
-            child: textUtils(
-              text: 'Forgot Password', 
-              color: Get.isDarkMode?mainColor:pinkClr,
-              fontsize: 20, 
-              fontWeight: FontWeight.bold, 
-              textdecoration: TextDecoration.none,
-              textAlign: TextAlign.start
-              ),
-          ),
+          backgroundColor: Get.isDarkMode?darkGreyClr:Colors.white,
+          title: textUtils(
+            text: 'Forgot Password', 
+            color: Get.isDarkMode?pinkClr:mainColor,
+            fontsize: 20, 
+            fontWeight: FontWeight.bold, 
+            textdecoration: TextDecoration.none,
+            textAlign: TextAlign.start
+            ),
+            centerTitle: true,
+            elevation: 2,
         ),
         body: Padding(
           padding: const EdgeInsets.only(right: 5,left: 5,bottom: 20),
@@ -48,13 +48,13 @@ class ForgotPassScreen extends StatelessWidget {
                         onPressed: (){
                             Get.back();
                         }, 
-                        icon: Icon(Icons.close_rounded,color: Get.isDarkMode?Colors.black:Colors.white,),
+                        icon: Icon(Icons.close_rounded,color: Get.isDarkMode?Colors.white:darkGreyClr,),
                         ),
                     ],
                   ),
                   textUtils(
                     text: 'if you want to recover your account, then please provide your Email below..', 
-                    color: Get.isDarkMode?Colors.black:Colors.white,
+                    color: Get.isDarkMode?Colors.white:Colors.black,
                     fontsize: 15, 
                     fontWeight: FontWeight.bold, 
                     textdecoration: TextDecoration.none,
@@ -89,18 +89,18 @@ class ForgotPassScreen extends StatelessWidget {
                           }
                         }, 
                         label: 'Email',
-                        labelcolor: Get.isDarkMode?mainColor:pinkClr,
+                        labelcolor: Get.isDarkMode?pinkClr:mainColor,
                         inputtextcolor: Colors.black,
                         maxlines: 1,
                         ifobscure: false,
-                        prifixicon: Icon(Icons.email,color: Get.isDarkMode?mainColor:pinkClr,), 
+                        prifixicon: Icon(Icons.email,color: Get.isDarkMode?pinkClr:mainColor,), 
                         sufixicon: Container(width: 0,),
                         ontab: (){}, 
-                        cursorColor: Get.isDarkMode?mainColor:pinkClr,
+                        cursorColor: Get.isDarkMode?pinkClr:mainColor,
                         backgrouncolor: Colors.grey.shade300,
                         borderraduis: 15,
                         bordercolor: Colors.grey.shade300,
-                        focusbordercolor: Get.isDarkMode?mainColor:pinkClr,
+                        focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
                         ),
                     ),
                     SizedBox(height: h*0.07,),
@@ -125,7 +125,7 @@ class ForgotPassScreen extends StatelessWidget {
                                       textdecoration: TextDecoration.none,
                                       textAlign: TextAlign.start
                                       ),
-                                    maincolor: Get.isDarkMode?mainColor:pinkClr, 
+                                    maincolor: Get.isDarkMode?pinkClr:mainColor, 
                                     radius: 10, 
                                     leftpadding: 0, 
                                     rightpadding: 0, 

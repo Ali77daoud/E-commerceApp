@@ -20,7 +20,7 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Get.isDarkMode?Colors.white:darkGreyClr,
+      backgroundColor: Get.isDarkMode?darkGreyClr:Colors.white,
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -34,7 +34,7 @@ class SignupScreen extends StatelessWidget {
                     children: [
                       textUtils(
                         text: 'SIGN ', 
-                        color: Get.isDarkMode?mainColor:pinkClr, 
+                        color: Get.isDarkMode?pinkClr:mainColor,
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
@@ -42,7 +42,7 @@ class SignupScreen extends StatelessWidget {
                         ),
                         textUtils(
                         text: 'UP', 
-                        color: Get.isDarkMode?Colors.black:Colors.white, 
+                        color: Get.isDarkMode?Colors.white:Colors.black, 
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
@@ -67,18 +67,18 @@ class SignupScreen extends StatelessWidget {
                       }
                     }, 
                     label: 'User Name',
-                    labelcolor: Get.isDarkMode?mainColor:pinkClr,
+                    labelcolor: Get.isDarkMode?pinkClr:mainColor,
                     inputtextcolor: Colors.black,
                     maxlines: 1,
                     ifobscure: false,
-                    prifixicon: Icon(Icons.person,color: Get.isDarkMode?mainColor:pinkClr,size: 30,), 
+                    prifixicon: Icon(Icons.person,color: Get.isDarkMode?pinkClr:mainColor,size: 30,), 
                     sufixicon: Container(width: 0,),
                     ontab: (){}, 
-                    cursorColor: Get.isDarkMode?mainColor:pinkClr,
+                    cursorColor: Get.isDarkMode?pinkClr:mainColor,
                     backgrouncolor: Colors.grey.shade300,
                     borderraduis: 15,
                     bordercolor: Colors.grey.shade300,
-                    focusbordercolor: Get.isDarkMode?mainColor:pinkClr,
+                    focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
                     ),
                 ),
                 //insert email
@@ -97,18 +97,18 @@ class SignupScreen extends StatelessWidget {
                       }
                     }, 
                     label: 'Email',
-                    labelcolor: Get.isDarkMode?mainColor:pinkClr,
+                    labelcolor: Get.isDarkMode?pinkClr:mainColor,
                     inputtextcolor: Colors.black,
                     maxlines: 1,
                     ifobscure: false,
-                    prifixicon: Icon(Icons.email,color: Get.isDarkMode?mainColor:pinkClr,size: 30,), 
+                    prifixicon: Icon(Icons.email,color: Get.isDarkMode?pinkClr:mainColor,size: 30,), 
                     sufixicon: Container(width: 0,),
                     ontab: (){}, 
-                    cursorColor: Get.isDarkMode?mainColor:pinkClr,
+                    cursorColor: Get.isDarkMode?pinkClr:mainColor,
                     backgrouncolor: Colors.grey.shade300,
                     borderraduis: 15,
                     bordercolor: Colors.grey.shade300,
-                    focusbordercolor: Get.isDarkMode?mainColor:pinkClr,
+                    focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
                     ),
                 ),
                 const SizedBox(height: 20,),
@@ -129,11 +129,11 @@ class SignupScreen extends StatelessWidget {
                             }
                           }, 
                           label: 'Password',
-                          labelcolor: Get.isDarkMode?mainColor:pinkClr,
+                          labelcolor: Get.isDarkMode?pinkClr:mainColor,
                           inputtextcolor: Colors.black,
                           maxlines: 1,
                           ifobscure: authcontroller.isvisibilty,
-                          prifixicon: Icon(Icons.lock,color: Get.isDarkMode?mainColor:pinkClr,), 
+                          prifixicon: Icon(Icons.lock,color: Get.isDarkMode?pinkClr:mainColor,), 
                           sufixicon: IconButton(
                             onPressed: (){
                               authcontroller.visibilty();
@@ -143,11 +143,11 @@ class SignupScreen extends StatelessWidget {
                              Icon(Icons.visibility, color: Colors.grey.shade700)
                             ),
                           ontab: (){}, 
-                          cursorColor: Get.isDarkMode?mainColor:pinkClr,
+                          cursorColor: Get.isDarkMode?pinkClr:mainColor,
                           backgrouncolor: Colors.grey.shade300,
                           borderraduis: 15,
                           bordercolor: Colors.grey.shade300,
-                          focusbordercolor: Get.isDarkMode?mainColor:pinkClr,
+                          focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
                           ),
                       );
                   }
@@ -182,7 +182,7 @@ class SignupScreen extends StatelessWidget {
                           const SizedBox(width: 20,),
                           textUtils(
                             text: 'I accept terms & conditions', 
-                            color: Get.isDarkMode?Colors.black:Colors.white, 
+                            color: Get.isDarkMode?Colors.white:Colors.black, 
                             fontsize: 15,
                             fontWeight: FontWeight.bold, 
                             textdecoration: TextDecoration.none,
@@ -232,7 +232,7 @@ class SignupScreen extends StatelessWidget {
                              textdecoration: TextDecoration.none,
                              textAlign: TextAlign.start
                              ),
-                           maincolor: Get.isDarkMode?mainColor:pinkClr, 
+                           maincolor: Get.isDarkMode?pinkClr:mainColor, 
                            radius: 10, 
                            leftpadding: 0, 
                            rightpadding: 0, 
@@ -248,7 +248,7 @@ class SignupScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 115,
                   decoration:  BoxDecoration(
-                    color: Get.isDarkMode?mainColor:pinkClr,
+                    color: Get.isDarkMode?pinkClr:mainColor,
                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
                   ),
                   child: Row(
