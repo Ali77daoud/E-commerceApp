@@ -12,7 +12,7 @@ class ThemeController{
   }
 
   bool getThemeDataFromBox(){
-   return box.read<bool>(key) ?? true;
+   return box.read<bool>(key) ?? false;
   }
 
   ThemeMode get themeDataGet=>getThemeDataFromBox()?ThemeMode.dark:ThemeMode.light;

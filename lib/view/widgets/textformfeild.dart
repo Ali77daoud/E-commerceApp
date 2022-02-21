@@ -19,6 +19,8 @@ Widget defualTextFormFeild({
   required double borderraduis,
   required Color bordercolor,
   required Color focusbordercolor,
+  String? hint,
+  var padding,
 })=> TextFormField(
   controller: controller ,
   keyboardType:inputtype ,
@@ -33,6 +35,12 @@ Widget defualTextFormFeild({
   validator: validate,
   cursorColor: cursorColor,
   decoration: InputDecoration(
+    contentPadding: padding,
+    hintText: hint,
+    hintStyle: TextStyle(
+      color: Colors.grey.shade500,
+      fontSize: 13,
+    ),
     filled: true,
     fillColor: backgrouncolor,
     labelText: label,

@@ -17,6 +17,7 @@ class MainScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: context.theme.backgroundColor,
           appBar: AppBar(
+            elevation: 0,
             backgroundColor:Get.isDarkMode?pinkClr:mainColor,
             title: textUtils(
               text: 'My shop', 

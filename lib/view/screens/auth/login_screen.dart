@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/logic/controllers/auth_controller.dart';
-import 'package:e_commerce_app/logic/controllers/theme_controller.dart';
 import 'package:e_commerce_app/routes/routes.dart';
 import 'package:e_commerce_app/utils/my_string.dart';
 import 'package:e_commerce_app/utils/theme.dart';
@@ -74,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                     prifixicon: Icon(Icons.email,color: Get.isDarkMode?pinkClr:mainColor,), 
                     sufixicon: Container(width: 0,),
                     ontab: (){}, 
-                    cursorColor: Get.isDarkMode?mainColor:pinkClr,
+                    cursorColor:Get.isDarkMode?pinkClr:mainColor,
                     backgrouncolor: Colors.grey.shade300,
                     borderraduis: 15,
                     bordercolor: Colors.grey.shade300,

@@ -35,6 +35,7 @@ dependencies:
   firebase_core: ^1.10.2
   get: ^4.5.1
   get_storage: ^2.0.3
+  http: ^0.13.4
   # flutter_facebook_auth: ^4.0.1
 dev_dependencies:
   flutter_test:

@@ -133,22 +133,13 @@ class AuthController extends GetxController{
   Future<void> googleSignIn()async{
     try{
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if(googleUser==null)return;
-      displyName=googleUser.displayName!;
+      displyName=googleUser!.displayName!;
       displyUserPhoto=googleUser.displayName!;
       ifCircleIndicatorShown=false;
       isSigenedIn = true;
       authbox.write("auth",isSigenedIn);
       update();
       Get.offNamed(Routes.mainScreen);
-    }on FirebaseAuthException catch (e){
-      Get.snackbar(
-            'Error', 
-            e.toString(),
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.green,
-            colorText: Colors.white,
-            );
     }catch(e){
       ifCircleIndicatorShown=false;
       update();
@@ -208,7 +199,7 @@ class AuthController extends GetxController{
       displyName= '';
       displyName= '';
       ifCircleIndicatorShown=false;
-      authbox.remove('auth');
+      authbox.remove("auth");
       update();
       Get.offNamed(Routes.welcomeScreen);
     } catch (e) {
