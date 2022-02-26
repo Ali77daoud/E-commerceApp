@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/logic/controllers/auth_controller.dart';
 import 'package:e_commerce_app/logic/controllers/main_controller.dart';
+import 'package:e_commerce_app/routes/routes.dart';
 import 'package:e_commerce_app/utils/theme.dart';
 import 'package:e_commerce_app/view/widgets/text_utils.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class MainScreen extends StatelessWidget {
               actions: [
                  InkWell(
                    onTap: (){
-                     
+                     Get.toNamed(Routes.cartScreen);
                    },
                    child: Image.asset('assets/images/shop.png')
                    ),

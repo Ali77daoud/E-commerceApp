@@ -10,7 +10,7 @@ class MainScreenController extends GetxController{
   List<Widget> screens = [
     HomeScreen(),
     const CategoryScreen(),
-    const FavoriteScreen(),
+    FavoriteScreen(),
     SettingScreen(),
   ].obs;
 }

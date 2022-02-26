@@ -7,10 +7,13 @@ Widget textUtils({
   required FontWeight fontWeight,
   required TextDecoration textdecoration,
   required TextAlign textAlign,
+  var overflow,
+  int? maxline,
   }){
   return Text(
     text,
     style: TextStyle(
+      overflow: overflow,
       decoration: textdecoration,
       color: color,
       fontFamily: 'Lato',
@@ -18,5 +21,6 @@ Widget textUtils({
       fontWeight: fontWeight, 
     ),
     textAlign: textAlign,
+    maxLines:maxline ,
     );
 }

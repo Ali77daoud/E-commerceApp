@@ -1,87 +1,80 @@
 import 'package:flutter/material.dart';
 
-Widget cardUtils(
-  {
-    required double elevation,
-    required Color color,
-    required double radius,
-    required var lefticon,
-    required var righticon,
-    required var centertext,
-    required String img,
-    required double price,
-    required double rate,
-  }
-){
+Widget cardUtils({
+  required String img,
+  required String title,
+  required double price,
+  required Color textcolor,
+  required var firstIcon,
+  required int flex,
+  required var secondIcon,
+}){
   return Card(
-    color: color,
-    elevation: elevation,
-    shadowColor: Colors.white,
-    shape: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(radius),
-      borderSide: BorderSide.none
-       ),
-
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              lefticon,
-              centertext,
-              righticon,
-            ],
-          ),
-          Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 5,right: 5,),
-                child: Container(
-                  width: double.infinity,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
+    elevation: 3,
+    child: SizedBox(
+      height: 130,
+      child: Padding(
+        padding: const EdgeInsets.only(left:5),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 0,
+              child: Container(
+                height: 110,
+                width: 120,
+                decoration:  BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
                       image: NetworkImage(img),
                       fit: BoxFit.contain,
                     )
-                  ),
                 ),
               ),
-              Container(
-                width: 130,
-                height: 25,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey.withOpacity(0.5),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10,right: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children:  [
-                          Text('$price',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 13,color: Colors.black),),
-                          const Text('\$',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.black),),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text('$rate',style: const TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black),),
-                          Icon(Icons.star,size: 15,color: Colors.yellow.shade800,),
-                        ],
-                      ),
-                    ],
+            ),
+            Expanded(
+              flex: 4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:  [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10,right: 5),
+                    child: Text(title,style: TextStyle(
+                      color: textcolor,
+                      fontSize: 16,
+                      overflow: TextOverflow.ellipsis,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2,
+                    ),
                   ),
-                ),
-              )
-            ],
-          ),
-        ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10,right: 5,top: 10),
+                    child: Text('${price.toStringAsFixed(2)}\$',style: TextStyle(
+                      color: textcolor,
+                      fontSize: 14,
+                      overflow: TextOverflow.ellipsis,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: flex,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  firstIcon,
+                  secondIcon,
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-    )
+    ),
   );
 }
