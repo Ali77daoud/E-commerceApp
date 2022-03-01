@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/routes/routes.dart';
 import 'package:e_commerce_app/utils/theme.dart';
 import 'package:e_commerce_app/view/widgets/button_utils.dart';
 import 'package:e_commerce_app/view/widgets/text_utils.dart';
@@ -62,7 +63,7 @@ class _EmptyCartState extends State<EmptyCart> {
                 width: double.infinity,
                 child: buttomUtils(
                   ontab: (){
-                    Get.back();
+                    Get.toNamed(Routes.mainScreen);
                   }, 
                   childtext: textUtils(
                     text: 'Go to home', 

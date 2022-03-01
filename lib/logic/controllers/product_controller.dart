@@ -12,6 +12,10 @@ class ProductController extends GetxController{
   var favoriteStorage = GetStorage();
   var products;
 
+  //search
+  final TextEditingController searchkey = TextEditingController();
+  var searchList= <ProductModel>[].obs;
+
   @override
   void onInit() async{
     super.onInit();
@@ -66,5 +70,20 @@ class ProductController extends GetxController{
   }
   bool ifFavorite(int productid){
     return favoritesList.any((element) => element.id==productid);
+  }
+
+  //search logic
+  void addSearchToList(var searchName){
+    //change it to lowercase before searching 
+    String searchTitle = searchName.toLowerCase();
+    String searchPrice = searchName;
+    searchList.value = productList.where((search) {
+      return search.title.toLowerCase().contains(searchTitle) || search.price.toStringAsFixed(0).endsWith(searchPrice);
+    }).toList();
+    update();
+  }
+  void clearSearch(){
+    searchkey.clear();
+    addSearchToList('');
   }
 }

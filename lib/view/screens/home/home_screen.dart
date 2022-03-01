@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/logic/controllers/product_controller.dart';
 import 'package:e_commerce_app/utils/theme.dart';
 import 'package:e_commerce_app/view/screens/home/card_items.dart';
 import 'package:e_commerce_app/view/widgets/text_utils.dart';
@@ -7,16 +8,15 @@ import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
    HomeScreen({ Key? key }) : super(key: key);
-  final TextEditingController searchkey = TextEditingController();
+  final productcontroller = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           width: double.infinity,
-          height: h*0.3,
+          height: 200,
           decoration: BoxDecoration(
             color: Get.isDarkMode?pinkClr:mainColor,
             borderRadius: const BorderRadius.only(bottomLeft:Radius.circular(20) ,bottomRight:Radius.circular(20)),
@@ -42,10 +42,14 @@ class HomeScreen extends StatelessWidget {
                 textdecoration: TextDecoration.none, 
                 textAlign: TextAlign.start,
                 ),
-                Padding(
+                GetBuilder<ProductController>(builder: (_){
+                  return Padding(
                   padding: const EdgeInsets.only(right: 50,top: 50,),
                   child: defualTextFormFeild(
-                      controller: searchkey, 
+                      onChange: (searchName){
+                        productcontroller.addSearchToList(searchName);
+                      },
+                      controller: productcontroller.searchkey, 
                       inputtype: TextInputType.text, 
                       validate: null,
                       label: '',
@@ -54,32 +58,40 @@ class HomeScreen extends StatelessWidget {
                       maxlines: 1,
                       ifobscure: false,
                       prifixicon: Icon(Icons.search,color: Get.isDarkMode?pinkClr:mainColor,size: 25,), 
-                      sufixicon: Container(width: 0,),
+                      sufixicon: productcontroller.searchkey.text.isNotEmpty? IconButton(
+                        onPressed: (){
+                          productcontroller.clearSearch();
+                        }, 
+                        icon: const Icon(Icons.clear,color: Colors.black,size: 20,),
+                        ):Container(width: 0,),
                       ontab: (){}, 
                       cursorColor:Get.isDarkMode?pinkClr:mainColor,
                       backgrouncolor: Colors.grey.shade300,
                       borderraduis: 15,
                       bordercolor: Colors.grey.shade300,
                       focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
-                      hint: 'Search',
+                      hint: 'Search with name or price',
                       padding: const EdgeInsets.only(top: 10,bottom: 10),
                       ),
+                );
+                }
                 ),
+                
               ],
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20,top: 10),
-          child: textUtils(
-                text: 'Categories', 
-                color: Get.isDarkMode?Colors.white:Colors.black, 
-                fontsize: 20, 
-                fontWeight: FontWeight.bold, 
-                textdecoration: TextDecoration.none, 
-                textAlign: TextAlign.start,
-                ),
-        ),
+         Padding(
+                padding: const EdgeInsets.only(left: 20,top: 10),
+                child: textUtils(
+                  text: 'Categories', 
+                  color: Get.isDarkMode?Colors.white:Colors.black, 
+                  fontsize: 20, 
+                  fontWeight: FontWeight.bold, 
+                  textdecoration: TextDecoration.none, 
+                  textAlign: TextAlign.start,
+                      ),
+                  ),
         CardItems(),
       ],
     );

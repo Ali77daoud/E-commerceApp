@@ -1,4 +1,6 @@
+import 'package:badges/badges.dart';
 import 'package:e_commerce_app/logic/controllers/auth_controller.dart';
+import 'package:e_commerce_app/logic/controllers/cart_controller.dart';
 import 'package:e_commerce_app/logic/controllers/main_controller.dart';
 import 'package:e_commerce_app/routes/routes.dart';
 import 'package:e_commerce_app/utils/theme.dart';
@@ -11,6 +13,7 @@ class MainScreen extends StatelessWidget {
 
   final authcontroller = Get.find<AuthController>();
   final maincontroller = Get.find<MainScreenController>();
+  final cartcontroller = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,12 +33,21 @@ class MainScreen extends StatelessWidget {
               ),
               centerTitle: true,
               actions: [
-                 InkWell(
-                   onTap: (){
-                     Get.toNamed(Routes.cartScreen);
-                   },
-                   child: Image.asset('assets/images/shop.png')
-                   ),
+                Badge(
+                    position: BadgePosition.topEnd(top: 0, end: 3),
+                    animationDuration: const Duration(milliseconds: 300),
+                    animationType: BadgeAnimationType.slide,
+                    badgeContent: Text(
+                      '${cartcontroller.totalCartProducts}',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    child: IconButton(
+                      icon: Image.asset('assets/images/shop.png'),
+                    onPressed: () {
+                      Get.toNamed(Routes.cartScreen);
+                    }
+                    ),
+                  ),
               ],
           ),
           bottomNavigationBar: BottomNavigationBar(
