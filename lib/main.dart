@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //for language
-      locale:  Locale(ene),
+      locale:  Locale(GetStorage().read<String>('lang').toString()),
       fallbackLocale:Locale(ene),
       translations: LocalizationApp(),
       //

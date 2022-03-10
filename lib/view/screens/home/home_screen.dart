@@ -22,12 +22,12 @@ class HomeScreen extends StatelessWidget {
             borderRadius: const BorderRadius.only(bottomLeft:Radius.circular(20) ,bottomRight:Radius.circular(20)),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 20,top: 10),
+            padding: const EdgeInsets.only(left: 20,top: 10,right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 textUtils(
-                text: 'Find your', 
+                text: 'Find your'.tr, 
                 color: Get.isDarkMode?Colors.black:Colors.white, 
                 fontsize: 23, 
                 fontWeight: FontWeight.normal, 
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                 textAlign: TextAlign.start,
                 ),
                 textUtils(
-                text: 'INSPIRATION', 
+                text: 'INSPIRATION'.tr, 
                 color: Get.isDarkMode?Colors.black:Colors.white, 
                 fontsize: 25, 
                 fontWeight: FontWeight.bold, 
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 GetBuilder<ProductController>(builder: (_){
                   return Padding(
-                  padding: const EdgeInsets.only(right: 50,top: 50,),
+                  padding: const EdgeInsets.only(right: 50,top: 50),
                   child: defualTextFormFeild(
                       onChange: (searchName){
                         productcontroller.addSearchToList(searchName);
@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
          Padding(
-                padding: const EdgeInsets.only(left: 20,top: 10),
+                padding: const EdgeInsets.only(left: 20,top: 10,right: 20),
                 child: textUtils(
                   text: 'Products'.tr, 
                   color: Get.isDarkMode?Colors.white:Colors.black, 

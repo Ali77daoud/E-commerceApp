@@ -15,9 +15,9 @@ class MainScreenController extends GetxController{
   ].obs;
 
   List<String> titles = [
-    'My Shop',
-    'Categories',
-    'Favorites',
-    'Settings'
+    'My Shop'.tr,
+    'Categories'.tr,
+    'Favorites'.tr,
+    'Settings'.tr
   ].obs;
 }

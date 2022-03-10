@@ -40,7 +40,7 @@ class SettingScreen extends StatelessWidget {
                 ),
               ///////////////////////////////////////////////
               Padding(
-                padding: const EdgeInsets.only(top: 10,left: 10),
+                padding: const EdgeInsets.only(top: 10,left: 10,right: 10),
                 child: textUtils(
                    text: 'General'.tr, 
                    color: Get.isDarkMode?pinkClr:mainColor, 
@@ -134,9 +134,10 @@ class SettingScreen extends StatelessWidget {
                                   value: ara,
                                   ),
                               ],
-                              value: ene,
+                              value: authcontroller.lanLocal,
                               onChanged: (value){
                                 authcontroller.changeLanguage(value!);
+                                Get.updateLocale(Locale(value));
                               },
                               ),
                           )

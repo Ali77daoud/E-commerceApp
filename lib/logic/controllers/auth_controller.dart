@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/routes/routes.dart';
+import 'package:e_commerce_app/utils/my_string.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class AuthController extends GetxController{
     displyEmail = (userProfile != null ? userProfile!.email: " ")!;
     displyUserPhoto = (userProfile != null ? userProfile!.photoURL: " ")!;
     // for settings
-    // lanLocal = await getLang;
+    lanLocal = await getLang;
   }
   
   void getUserProfile(){
@@ -249,33 +250,33 @@ class AuthController extends GetxController{
   }
   
 //for setting language
-  // var lanBox = GetStorage();
-  // var lanLocal = 'eng';
+  var lanBox = GetStorage();
+  var lanLocal = ene;
 
   
 
-  // Future<String> get getLang async{
-  //   return await lanBox.read('lang');
-  // }
+  Future<String> get getLang async{
+    return await lanBox.read('lang');
+  }
 
   void changeLanguage(String lang){
-    Get.updateLocale(Locale(lang));
-    // saveLanguage(lang);
-    // if(lanLocal == lang){
-    //   return;
-    // }
+    // Get.updateLocale(Locale(lang));
+    saveLanguage(lang);
+    if(lanLocal == lang){
+      return;
+    }
 
-    // if(lanLocal == 'ara'){
-    //   lanLocal='ara';
-    //   saveLanguage(lang);
-    // }else if(lanLocal == 'eng'){
-    //   lanLocal='eng';
-    //   saveLanguage(lang);
-    // }
+    if(lang == ara){
+      lanLocal=ara;
+      saveLanguage(ara);
+    }else{
+      lanLocal=ene;
+      saveLanguage(ene);
+    }
     update();
   }
 
-  // void saveLanguage(String lang)async{
-  //   await lanBox.write('lang', lang);
-  // }
+  void saveLanguage(String lang)async{
+    await lanBox.write('lang', lang);
+  }
 }
