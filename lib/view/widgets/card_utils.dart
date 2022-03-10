@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget cardUtils({
   required String img,
+  required bool ifNetworkImage,
   required String title,
-  required double price,
+  required String underText,
   required Color textcolor,
   required var firstIcon,
   required int flex,
   required var secondIcon,
 }){
   return Card(
-    elevation: 3,
+    elevation: 1,
+    color: Get.isDarkMode?Colors.grey.shade900:Colors.white,
     child: SizedBox(
       height: 130,
       child: Padding(
@@ -20,12 +23,20 @@ Widget cardUtils({
             Expanded(
               flex: 0,
               child: Container(
-                height: 110,
-                width: 120,
+                height: 100,
+                width: 100,
                 decoration:  BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
-                      image: NetworkImage(img),
+                  image:
+                  ifNetworkImage?
+                   DecorationImage(
+                      image: 
+                      NetworkImage(img) ,
+                      fit: BoxFit.contain,
+                    ):
+                    DecorationImage(
+                      image: 
+                      AssetImage(img) ,
                       fit: BoxFit.contain,
                     )
                 ),
@@ -50,11 +61,11 @@ Widget cardUtils({
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10,right: 5,top: 10),
-                    child: Text('${price.toStringAsFixed(2)}\$',style: TextStyle(
+                    child: Text(underText,style: TextStyle(
                       color: textcolor,
                       fontSize: 14,
                       overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.normal,
                     ),
                     maxLines: 1,
                     ),

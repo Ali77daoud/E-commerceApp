@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/logic/controllers/product_controller.dart';
 import 'package:e_commerce_app/utils/theme.dart';
-import 'package:e_commerce_app/view/screens/home/card_items.dart';
+import 'package:e_commerce_app/view/screens/home/product_card_items.dart';
 import 'package:e_commerce_app/view/widgets/text_utils.dart';
 import 'package:e_commerce_app/view/widgets/textformfeild.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                       borderraduis: 15,
                       bordercolor: Colors.grey.shade300,
                       focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
-                      hint: 'Search with name or price',
+                      hint: 'Search with name',
                       padding: const EdgeInsets.only(top: 10,bottom: 10),
                       ),
                 );
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
          Padding(
                 padding: const EdgeInsets.only(left: 20,top: 10),
                 child: textUtils(
-                  text: 'Categories', 
+                  text: 'Products'.tr, 
                   color: Get.isDarkMode?Colors.white:Colors.black, 
                   fontsize: 20, 
                   fontWeight: FontWeight.bold, 

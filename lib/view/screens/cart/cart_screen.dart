@@ -1,8 +1,6 @@
 import 'package:e_commerce_app/logic/controllers/cart_controller.dart';
-import 'package:e_commerce_app/model/product_model.dart';
 import 'package:e_commerce_app/utils/theme.dart';
 import 'package:e_commerce_app/view/screens/cart/empty_cart.dart';
-import 'package:e_commerce_app/view/widgets/button_utils.dart';
 import 'package:e_commerce_app/view/widgets/buy_widget.dart';
 import 'package:e_commerce_app/view/widgets/card_utils.dart';
 import 'package:e_commerce_app/view/widgets/text_utils.dart';
@@ -71,9 +69,10 @@ class CartScreen extends StatelessWidget {
             child: ListView.separated(
               itemBuilder: (context,index)=>
               cardUtils(
+                ifNetworkImage: true,
                 img: cartcontroller.productsMap.keys.toList()[index].image,
                 title: cartcontroller.productsMap.keys.toList()[index].title,
-                price: cartcontroller.subTotalPrice[index], 
+                underText: cartcontroller.subTotalPrice[index].toStringAsFixed(2)+' \$', 
                 textcolor: Get.isDarkMode?Colors.white:Colors.black,
                 firstIcon: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

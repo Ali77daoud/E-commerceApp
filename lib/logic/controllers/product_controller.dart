@@ -10,7 +10,7 @@ class ProductController extends GetxController{
   var isLoading = true.obs;
   var isFavorites =false.obs;
   var favoriteStorage = GetStorage();
-  var products;
+  var products = <ProductModel>[].obs;
 
   //search
   final TextEditingController searchkey = TextEditingController();
@@ -29,7 +29,7 @@ class ProductController extends GetxController{
   Future<void> getProduct()async{
     try{
       await Future.delayed(const Duration(seconds: 3)).then(
-        (value) async => products = await ProductService.getProduct());
+        (value) async => products.value = await ProductService.getProduct());
         
     }catch(e){
       isLoading.value=false;
@@ -43,12 +43,11 @@ class ProductController extends GetxController{
     }
     
     try{
-      isLoading.value=true;
       if(products.isNotEmpty){
-        productList.addAll(products);
+        productList.value= products;
       }
     }finally{
-      isLoading.value=false;
+      isLoading.value =false;
     }
   }
   void manageFavorite(int productId)async{
@@ -76,9 +75,8 @@ class ProductController extends GetxController{
   void addSearchToList(var searchName){
     //change it to lowercase before searching 
     String searchTitle = searchName.toLowerCase();
-    String searchPrice = searchName;
     searchList.value = productList.where((search) {
-      return search.title.toLowerCase().contains(searchTitle) || search.price.toStringAsFixed(0).endsWith(searchPrice);
+      return search.title.toLowerCase().contains(searchTitle) ;
     }).toList();
     update();
   }

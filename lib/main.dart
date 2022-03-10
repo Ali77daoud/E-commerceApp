@@ -1,5 +1,7 @@
+import 'package:e_commerce_app/language/localization.dart';
 import 'package:e_commerce_app/logic/controllers/theme_controller.dart';
 import 'package:e_commerce_app/routes/routes.dart';
+import 'package:e_commerce_app/utils/my_string.dart';
 import 'package:e_commerce_app/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,6 +25,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      //for language
+      locale:  Locale(ene),
+      fallbackLocale:Locale(ene),
+      translations: LocalizationApp(),
+      //
       title: 'Flutter Demo',
       themeMode: ThemeController().themeDataGet,
       theme: ThemesApp.light,

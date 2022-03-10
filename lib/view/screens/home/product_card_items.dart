@@ -3,6 +3,7 @@ import 'package:e_commerce_app/logic/controllers/product_controller.dart';
 import 'package:e_commerce_app/utils/theme.dart';
 import 'package:e_commerce_app/view/screens/product_details.dart';
 import 'package:e_commerce_app/view/widgets/home_card.dart';
+import 'package:e_commerce_app/view/widgets/not_found.dart';
 import 'package:e_commerce_app/view/widgets/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,8 +38,21 @@ class CardItems extends StatelessWidget {
            },
            child: Padding(
                 padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
-                child: GridView.builder(
-                  itemCount: productcontroller.searchList.isEmpty?
+                child:
+                 productcontroller.productList.isEmpty?
+                 ListView.builder(
+                   physics: const AlwaysScrollableScrollPhysics(),
+                   itemBuilder: (context,index){
+                     return Padding(
+                       padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.15),
+                       child: const NotFound(),
+                     );
+                   },
+                   itemCount: 1,
+                   ):
+                 GridView.builder(
+                  itemCount:
+                  productcontroller.searchList.isEmpty?
                   productcontroller.productList.length:
                   productcontroller.searchList.length ,
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -48,9 +62,9 @@ class CardItems extends StatelessWidget {
                     maxCrossAxisExtent: 200,
                   ), 
                   itemBuilder: (context,index){
+                    return 
                     //search empty//////////////////////////////////////////////////////////
-                    if(productcontroller.searchList.isEmpty){
-                      return InkWell(
+                    productcontroller.searchList.isEmpty ? InkWell(
                       onTap: (){
                         Get.to(()=>ProductDetails(
                           productModel: productcontroller.productList[index] ,
@@ -95,11 +109,7 @@ class CardItems extends StatelessWidget {
                         price: productcontroller.productList[index].price,
                         rate: productcontroller.productList[index].rating.rate,
                         ),
-                    );
-                    }
-                    //search not empty//////////////////////////////////////////////////////
-                    else{
-                      return InkWell(
+                    ) : InkWell(
                       onTap: (){
                         Get.to(()=>ProductDetails(
                           productModel: productcontroller.searchList[index] ,
@@ -145,7 +155,6 @@ class CardItems extends StatelessWidget {
                         rate: productcontroller.searchList[index].rating.rate,
                         ),
                     );
-                    }
                     
                   },
                   ),

@@ -9,11 +9,32 @@ class AuthController extends GetxController{
   bool isvisibilty = true;
   bool ischecked = false;
   bool ifCircleIndicatorShown=false;
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   var displyName = '';
   var displyUserPhoto = '';
+  var displyEmail = '';
+
   var isSigenedIn = false;
 
   final GetStorage authbox = GetStorage();
+
+  User ? get userProfile => auth.currentUser;
+
+  @override
+  void onInit() async{
+    super.onInit();
+    
+    displyName = (userProfile != null ? userProfile!.displayName: " ")!;
+    displyEmail = (userProfile != null ? userProfile!.email: " ")!;
+    displyUserPhoto = (userProfile != null ? userProfile!.photoURL: " ")!;
+    // for settings
+    // lanLocal = await getLang;
+  }
+  
+  void getUserProfile(){
+    
+  }
 
   void visibilty(){
     isvisibilty =!isvisibilty;
@@ -38,12 +59,13 @@ class AuthController extends GetxController{
     required String password,
   })async{
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       ).then((value) {
-        displyName=name;
-        FirebaseAuth.instance.currentUser!.updateDisplayName(name);
+        displyName = name;
+        displyEmail = email;
+        auth.currentUser!.updateDisplayName(name);
       }
       );
       update();
@@ -85,13 +107,15 @@ class AuthController extends GetxController{
     }
   )async{
     try{
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: email, 
         password: password
         ).then((value){
-         displyName=FirebaseAuth.instance.currentUser!.displayName!;
-        }
-         );
+          displyName = auth.currentUser!.displayName!;
+          displyEmail = auth.currentUser!.email!;
+          displyUserPhoto = auth.currentUser!.photoURL!;
+        });
+        
         ifCircleIndicatorShown=false;
         isSigenedIn = true;
         authbox.write("auth",isSigenedIn);
@@ -133,8 +157,16 @@ class AuthController extends GetxController{
   Future<void> googleSignIn()async{
     try{
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      displyName=googleUser!.displayName!;
-      displyUserPhoto=googleUser.displayName!;
+      displyName = googleUser!.displayName!;
+      displyEmail = googleUser.email;
+      displyUserPhoto = googleUser.photoUrl!;
+      GoogleSignInAuthentication googleSignInAuthentication = await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken
+      );
+      await auth.signInWithCredential(credential);
+
       ifCircleIndicatorShown=false;
       isSigenedIn = true;
       authbox.write("auth",isSigenedIn);
@@ -196,8 +228,11 @@ class AuthController extends GetxController{
     try {
       await FirebaseAuth.instance.signOut();
       await GoogleSignIn().signOut();
-      displyName= '';
-      displyName= '';
+
+      displyName = '';
+      displyName = '';
+      displyEmail = '';
+
       ifCircleIndicatorShown=false;
       authbox.remove("auth");
       update();
@@ -212,7 +247,35 @@ class AuthController extends GetxController{
             );
     }
   }
+  
+//for setting language
+  // var lanBox = GetStorage();
+  // var lanLocal = 'eng';
 
   
 
+  // Future<String> get getLang async{
+  //   return await lanBox.read('lang');
+  // }
+
+  void changeLanguage(String lang){
+    Get.updateLocale(Locale(lang));
+    // saveLanguage(lang);
+    // if(lanLocal == lang){
+    //   return;
+    // }
+
+    // if(lanLocal == 'ara'){
+    //   lanLocal='ara';
+    //   saveLanguage(lang);
+    // }else if(lanLocal == 'eng'){
+    //   lanLocal='eng';
+    //   saveLanguage(lang);
+    // }
+    update();
+  }
+
+  // void saveLanguage(String lang)async{
+  //   await lanBox.write('lang', lang);
+  // }
 }

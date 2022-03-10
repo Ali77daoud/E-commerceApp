@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/logic/controllers/product_controller.dart';
 import 'package:e_commerce_app/view/widgets/card_utils.dart';
+import 'package:e_commerce_app/view/widgets/favorite_empty.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,11 +11,12 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx((){
       if(productcontroller.favoritesList.isEmpty){
-        return const Center(child: Text('Empty'));
+        return const FavoriteEmpty();
       }
       else{ 
         return ListView.separated(
         itemBuilder: (context,index)=>cardUtils(
+          ifNetworkImage: true,
           firstIcon: IconButton(
                     onPressed: (){
                       productcontroller.removeProduct(productcontroller.favoritesList[index].id,);
@@ -22,7 +24,7 @@ class FavoriteScreen extends StatelessWidget {
                     icon: Icon(Icons.favorite,color: Colors.red.shade600),
                     ),
           img:productcontroller.favoritesList[index].image ,
-          price: productcontroller.favoritesList[index].price,
+          underText: productcontroller.favoritesList[index].price.toStringAsFixed(2)+' \$',
           textcolor: Get.isDarkMode?Colors.white:Colors.black,
           title: productcontroller.favoritesList[index].title,
           flex: 1,

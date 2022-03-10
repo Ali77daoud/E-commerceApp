@@ -1,12 +1,11 @@
 import 'package:e_commerce_app/logic/bindings/auth_binding.dart';
 import 'package:e_commerce_app/logic/bindings/main_binding.dart';
 import 'package:e_commerce_app/logic/bindings/product_binding.dart';
-import 'package:e_commerce_app/logic/controllers/auth_controller.dart';
 import 'package:e_commerce_app/view/screens/auth/forgotpass_screen.dart';
 import 'package:e_commerce_app/view/screens/auth/login_screen.dart';
 import 'package:e_commerce_app/view/screens/auth/signup_screen.dart';
 import 'package:e_commerce_app/view/screens/cart/cart_screen.dart';
-import 'package:e_commerce_app/view/screens/category_screen.dart';
+import 'package:e_commerce_app/view/screens/category/category_screen.dart';
 import 'package:e_commerce_app/view/screens/favorites_screen.dart';
 import 'package:e_commerce_app/view/screens/home/home_screen.dart';
 import 'package:e_commerce_app/view/screens/main_screen.dart';
@@ -72,7 +71,7 @@ class AppRoute{
       ),
       GetPage(
       name:Routes.categoryScreen , 
-      page: ()=>const CategoryScreen(), 
+      page: ()=>CategoryScreen(), 
       binding: AuthBinding(),
       ),
       GetPage(
@@ -83,7 +82,10 @@ class AppRoute{
       GetPage(
       name:Routes.settingScreen , 
       page: ()=>SettingScreen(), 
-      binding: AuthBinding(),
+      bindings:[
+        AuthBinding(),
+        MainBinding(),
+      ],
       ),
       GetPage(
       name:Routes.cartScreen , 
