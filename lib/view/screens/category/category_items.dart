@@ -25,13 +25,13 @@ class CategoryItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Get.isDarkMode?pinkClr:mainColor,
+      color: Get.isDarkMode?darkClr:mainColor,
       child: SafeArea(
         child: Scaffold(
           backgroundColor: context.theme.backgroundColor,
           appBar: AppBar(
               elevation: 0,
-              backgroundColor:Get.isDarkMode?pinkClr:mainColor,
+              backgroundColor:Get.isDarkMode?darkClr:mainColor,
               title: textUtils(
                 text: categoryName, 
                 color: Get.isDarkMode?Colors.black:Colors.white, 
@@ -46,13 +46,13 @@ class CategoryItems extends StatelessWidget {
           Obx((){
             return categorycontroller.isAllLoading.value?
             Center(child:CircularProgressIndicator(
-              color:Get.isDarkMode?pinkClr:mainColor,
+              color:Get.isDarkMode?darkClr:mainColor,
               )
               ):
             RefreshIndicator(
               key: keyrefresh,
               triggerMode: RefreshIndicatorTriggerMode.anywhere,
-              color: Get.isDarkMode?pinkClr:mainColor,
+              color: Get.isDarkMode?darkClr:mainColor,
               onRefresh: ()async{
                 await categorycontroller.getAllCategory(index);
               },
@@ -107,7 +107,7 @@ class CategoryItems extends StatelessWidget {
                               child: Icon(Icons.shopping_cart,
                                color:
                                cartcontroller.isAddedToCart(categorycontroller.categoryList[index])?
-                               Get.isDarkMode?pinkClr:mainColor:
+                               Get.isDarkMode?darkClr:mainColor:
                                Colors.black
                               )
                               );

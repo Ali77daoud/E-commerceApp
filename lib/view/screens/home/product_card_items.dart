@@ -20,7 +20,7 @@ class CardItems extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(top: 30),
         child: Center(child:CircularProgressIndicator(
-          color:Get.isDarkMode?pinkClr:mainColor,
+          color:Get.isDarkMode?darkClr:mainColor,
           )
           ),
       ):
@@ -32,7 +32,7 @@ class CardItems extends StatelessWidget {
           RefreshIndicator(
            key: keyrefresh,
            triggerMode: RefreshIndicatorTriggerMode.anywhere,
-           color: Get.isDarkMode?pinkClr:mainColor,
+           color: Get.isDarkMode?darkClr:mainColor,
            onRefresh: ()async{
              await productcontroller.getProduct();
            },
@@ -59,7 +59,7 @@ class CardItems extends StatelessWidget {
                     childAspectRatio: 0.8,
                     mainAxisSpacing: 9.0,
                     crossAxisSpacing: 6.0,
-                    maxCrossAxisExtent: 200,
+                    maxCrossAxisExtent: 250,
                   ), 
                   itemBuilder: (context,index){
                     return 
@@ -100,7 +100,7 @@ class CardItems extends StatelessWidget {
                           child: Icon(Icons.shopping_cart,
                            color:
                            cartcontroller.isAddedToCart(productcontroller.productList[index])?
-                           Get.isDarkMode?pinkClr:mainColor:
+                           Get.isDarkMode?darkClr:mainColor:
                            Colors.black
                           )
                           );
@@ -145,7 +145,7 @@ class CardItems extends StatelessWidget {
                           child: Icon(Icons.shopping_cart,
                            color:
                            cartcontroller.isAddedToCart(productcontroller.searchList[index])?
-                           Get.isDarkMode?pinkClr:mainColor:
+                           Get.isDarkMode?darkClr:mainColor:
                            Colors.black
                           )
                           );

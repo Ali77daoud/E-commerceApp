@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       textUtils(
                         text: 'LOG ', 
-                        color: Get.isDarkMode?pinkClr:mainColor,
+                        color: Get.isDarkMode?darkClr:mainColor,
                         fontsize: 40,
                         fontWeight: FontWeight.bold, 
                         textdecoration: TextDecoration.none,
@@ -66,18 +66,18 @@ class LoginScreen extends StatelessWidget {
                       }
                     }, 
                     label: 'Email',
-                    labelcolor: Get.isDarkMode?pinkClr:mainColor,
+                    labelcolor: Get.isDarkMode?darkClr:mainColor,
                     inputtextcolor: Colors.black,
                     maxlines: 1,
                     ifobscure: false,
-                    prifixicon: Icon(Icons.email,color: Get.isDarkMode?pinkClr:mainColor,), 
+                    prifixicon: Icon(Icons.email,color: Get.isDarkMode?darkClr:mainColor,), 
                     sufixicon: Container(width: 0,),
                     ontab: (){}, 
-                    cursorColor:Get.isDarkMode?pinkClr:mainColor,
+                    cursorColor:Get.isDarkMode?darkClr:mainColor,
                     backgrouncolor: Colors.grey.shade300,
                     borderraduis: 15,
                     bordercolor: Colors.grey.shade300,
-                    focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
+                    focusbordercolor: Get.isDarkMode?darkClr:mainColor,
                     ),
                 ),
                 const SizedBox(height: 30,),
@@ -98,11 +98,11 @@ class LoginScreen extends StatelessWidget {
                           }
                         }, 
                         label: 'Password',
-                        labelcolor: Get.isDarkMode?pinkClr:mainColor,
+                        labelcolor: Get.isDarkMode?darkClr:mainColor,
                         inputtextcolor: Colors.black,
                         maxlines: 1,
                         ifobscure: authcontroller.isvisibilty,
-                        prifixicon: Icon(Icons.lock,color: Get.isDarkMode?pinkClr:mainColor,), 
+                        prifixicon: Icon(Icons.lock,color: Get.isDarkMode?darkClr:mainColor,), 
                         sufixicon: IconButton(
                             onPressed: (){
                               authcontroller.visibilty();
@@ -112,11 +112,11 @@ class LoginScreen extends StatelessWidget {
                              Icon(Icons.visibility, color: Colors.grey.shade700)
                             ),
                         ontab: (){}, 
-                        cursorColor: Get.isDarkMode?pinkClr:mainColor,
+                        cursorColor: Get.isDarkMode?darkClr:mainColor,
                         backgrouncolor: Colors.grey.shade300,
                         borderraduis: 15,
                         bordercolor: Colors.grey.shade300,
-                        focusbordercolor: Get.isDarkMode?pinkClr:mainColor,
+                        focusbordercolor: Get.isDarkMode?darkClr:mainColor,
                         ),
                     );
                   }
@@ -170,7 +170,7 @@ class LoginScreen extends StatelessWidget {
                                 textdecoration: TextDecoration.none,
                                 textAlign: TextAlign.start
                                 ),
-                              maincolor: Get.isDarkMode?pinkClr:mainColor,
+                              maincolor: Get.isDarkMode?darkClr:mainColor,
                               radius: 10, 
                               leftpadding: 0, 
                               rightpadding: 0, 
@@ -185,7 +185,7 @@ class LoginScreen extends StatelessWidget {
                 GetBuilder<AuthController>(
                   builder: (_){
                     return authcontroller.ifCircleIndicatorShown?
-                    CircularProgressIndicator(color:Get.isDarkMode?pinkClr:mainColor,):
+                    CircularProgressIndicator(color:Get.isDarkMode?darkClr:mainColor,):
                     Container();
                     
                   }
@@ -232,7 +232,7 @@ class LoginScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 115,
                   decoration: BoxDecoration(
-                    color: Get.isDarkMode?pinkClr:mainColor,
+                    color: Get.isDarkMode?darkClr:mainColor,
                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
                   ),
                   child: Row(

@@ -15,7 +15,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor:Get.isDarkMode?pinkClr:mainColor,
+        backgroundColor:Get.isDarkMode?darkClr:mainColor,
         title: textUtils(
           text: 'Cart items', 
           color: Get.isDarkMode?Colors.black:Colors.white, 
@@ -42,7 +42,7 @@ class CartScreen extends StatelessWidget {
                     backgroundColor: Colors.grey.shade400,
                     textCancel: 'cancel',
                     cancelTextColor: Colors.black,
-                    buttonColor: Get.isDarkMode?pinkClr:mainColor,
+                    buttonColor: Get.isDarkMode?darkClr:mainColor,
                     textConfirm: 'ok',
                     confirmTextColor: Colors.black,
                     onCancel: (){

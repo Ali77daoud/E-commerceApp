@@ -43,7 +43,7 @@ class SettingScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 10,left: 10,right: 10),
                 child: textUtils(
                    text: 'General'.tr, 
-                   color: Get.isDarkMode?pinkClr:mainColor, 
+                   color: Get.isDarkMode?darkClr:mainColor, 
                    fontsize: 18, 
                    fontWeight: FontWeight.bold, 
                    textdecoration: TextDecoration.none, 
@@ -68,7 +68,7 @@ class SettingScreen extends StatelessWidget {
                       rightPart:
                        Switch(
                           inactiveTrackColor: mainColor,
-                          activeColor: pinkClr,
+                          activeColor: darkClr,
                           value: switchValue ,
                           onChanged: (value) {
                             ThemeController().changetheme();
@@ -168,7 +168,7 @@ class SettingScreen extends StatelessWidget {
                           backgroundColor: Colors.grey.shade400,
                           textCancel: 'cancel',
                           cancelTextColor: Colors.black,
-                          buttonColor: Get.isDarkMode?pinkClr:mainColor,
+                          buttonColor: Get.isDarkMode?darkClr:mainColor,
                           textConfirm: 'ok',
                           confirmTextColor: Colors.black,
                           onCancel: (){

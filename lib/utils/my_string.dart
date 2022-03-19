@@ -5,7 +5,7 @@ String validationName = r'^[a-z A-Z]+$';
 
 String baseUrl = 'https://fakestoreapi.com';
 
-String arabic = 'Arabic 🇸🇾';
+String arabic = 'العربية 🇸🇾';
 String english = 'English 🇬🇧';
 
 String ara = 'ar';

@@ -73,7 +73,7 @@ class BuyWidget extends StatelessWidget {
                               const Icon(Icons.shopping_cart_outlined),
                             ],
                           ), 
-                          maincolor: Get.isDarkMode?pinkClr:mainColor, 
+                          maincolor: Get.isDarkMode?darkClr:mainColor, 
                           radius: 15, 
                           leftpadding: 0, 
                           rightpadding: 0, 

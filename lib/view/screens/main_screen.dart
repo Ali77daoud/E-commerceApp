@@ -17,16 +17,16 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Get.isDarkMode?pinkClr:mainColor,
+      color: Get.isDarkMode?darkClr:mainColor,
       child: SafeArea(
         child: Obx((){
           return Scaffold(
             backgroundColor: context.theme.backgroundColor,
             appBar: AppBar(
               elevation: 0,
-              backgroundColor:Get.isDarkMode?pinkClr:mainColor,
+              backgroundColor:Get.isDarkMode?darkClr:mainColor,
               title: textUtils(
-                text: maincontroller.titles[maincontroller.i.value], 
+                text: maincontroller.titles[maincontroller.i.value].tr, 
                 color: Get.isDarkMode?Colors.black:Colors.white, 
                 fontsize: 25, 
                 fontWeight: FontWeight.bold, 
@@ -60,7 +60,7 @@ class MainScreen extends StatelessWidget {
                         BottomNavigationBarItem(icon:Icon(Icons.settings),label: '' ),
                       ],
                   iconSize: 23,
-                  fixedColor: Get.isDarkMode?pinkClr:mainColor,
+                  fixedColor: Get.isDarkMode?darkClr:mainColor,
                   currentIndex: maincontroller.i.value,
                   type: BottomNavigationBarType.fixed ,
                   onTap: (index){

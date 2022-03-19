@@ -76,7 +76,7 @@ class _ImageSliderState extends State<ImageSlider> {
             effect: ExpandingDotsEffect(
               dotHeight: 10,
               dotWidth: 10,
-              activeDotColor: Get.isDarkMode?pinkClr:mainColor,
+              activeDotColor: Get.isDarkMode?darkClr:mainColor,
               dotColor:Colors.grey.shade600,
             ),
             ),
@@ -121,7 +121,7 @@ class _ImageSliderState extends State<ImageSlider> {
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Get.isDarkMode?pinkClr:mainColor,
+                        color: Get.isDarkMode?darkClr:mainColor,
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
@@ -146,7 +146,7 @@ class _ImageSliderState extends State<ImageSlider> {
                         child: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Get.isDarkMode?pinkClr:mainColor,
+                            color: Get.isDarkMode?darkClr:mainColor,
                             shape: BoxShape.circle,
                           ),
                           child: Icon(

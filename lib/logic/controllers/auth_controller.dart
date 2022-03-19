@@ -33,9 +33,9 @@ class AuthController extends GetxController{
     lanLocal = await getLang;
   }
   
-  void getUserProfile(){
+  // void getUserProfile(){
     
-  }
+  // }
 
   void visibilty(){
     isvisibilty =!isvisibilty;
@@ -64,9 +64,10 @@ class AuthController extends GetxController{
         email: email,
         password: password,
       ).then((value) {
-        displyName = name;
-        displyEmail = email;
+        // displyName = name;
+        // displyEmail = email;
         auth.currentUser!.updateDisplayName(name);
+        auth.currentUser!.updateEmail(email);
       }
       );
       update();

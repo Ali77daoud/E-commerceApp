@@ -17,13 +17,13 @@ class CategoryScreen extends StatelessWidget {
       return Scaffold(
       body:categorycontroller.isLoading.value?
       Center(child:CircularProgressIndicator(
-        color:Get.isDarkMode?pinkClr:mainColor,
+        color:Get.isDarkMode?darkClr:mainColor,
         )
         ):
        RefreshIndicator(
          key: keyrefresh,
          triggerMode: RefreshIndicatorTriggerMode.anywhere,
-           color: Get.isDarkMode?pinkClr:mainColor,
+           color: Get.isDarkMode?darkClr:mainColor,
            onRefresh: ()async{
              await categorycontroller.getCategory();
            },

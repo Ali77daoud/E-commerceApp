@@ -118,12 +118,12 @@ class _ClothesInfoState extends State<ClothesInfo> {
             lessStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Get.isDarkMode?pinkClr:mainColor,
+              color: Get.isDarkMode?darkClr:mainColor,
             ),
             moreStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Get.isDarkMode?pinkClr:mainColor,
+              color: Get.isDarkMode?darkClr:mainColor,
             ),
             style: TextStyle(
               fontSize: 14,

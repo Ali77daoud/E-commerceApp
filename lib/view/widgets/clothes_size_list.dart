@@ -30,7 +30,7 @@ class _SizeListState extends State<SizeList> {
             padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
             decoration: BoxDecoration(
               color:currentSellcted==index?
-              Get.isDarkMode?pinkClr: mainColor:
+              Get.isDarkMode?darkClr: mainColor:
               Get.isDarkMode?Colors.grey.shade500: Colors.grey.shade800,
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.grey.withOpacity(0.4),width: 2),

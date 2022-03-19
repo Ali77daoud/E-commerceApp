@@ -27,7 +27,7 @@ class ProductDetails extends StatelessWidget {
       const SizeList(),
     ];
     return Container(
-      color: Get.isDarkMode?pinkClr:mainColor,
+      color: Get.isDarkMode?darkClr:mainColor,
       child: SafeArea(
 
         child: Scaffold(
